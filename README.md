@@ -57,7 +57,33 @@ window.BloxTipConfig = {
 8. Go to your game's settings page on the Creator Dashboard, click the 3 dots, and click **Copy Universe ID**.
 9. On your game's settings page, navigate to **Monetization** > **Developer Products**. Click the **3 dots** in the top-right corner, open **External Purchase Settings**, click on **Show Test Mode Settings**, and enable **Enable Test Mode Settings** (this is required for the Open Cloud API to dynamically generate developer products).
 
-### 2. Vercel Setup
+### 2. Cloudflare Pages Setup (recommended)
+
+1. Push this repo to GitHub.
+2. Go to **Cloudflare Dashboard > Workers & Pages > Create > Pages > Import an existing Git repository** and select your repo.
+3. Set the build settings:
+   * **Build output directory:** `public`
+   * **Build command:** *(leave empty — static site, no build step)*
+   * Functions are auto-detected from the `functions/` directory — no extra config needed.
+4. Under **Settings > Environment variables** (do this for both **Production** and **Preview**), add:
+   * `ROBLOX_API_KEY`: The API key you generated in Step 1.
+   * `UNIVERSE_ID`: Your Roblox game's Universe ID.
+   * (Optional) `PRODUCT_NAME_TEMPLATE`, `PRODUCT_DESCRIPTION_TEMPLATE` — defaults are `Donate {receiving} Robux` / `Donated {receiving} Robux via BloxTip.`
+5. Click **Save and Deploy** — your donation page is live!
+
+#### Local development
+
+```bash
+npm install
+cp .dev.vars.example .dev.vars   # fill in your real values (gitignored)
+npm run dev                      # wrangler pages dev public
+```
+
+`wrangler pages dev` serves `public/` and runs `functions/api/*` locally, reading secrets from `.dev.vars`.
+
+### 2b. Vercel Setup (alternative — legacy)
+
+The `api/` directory keeps the original Vercel serverless functions, so the same repo still deploys on Vercel if you prefer it.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fviswagfx%2FBloxTip%2Ftree%2Fmain&env=ROBLOX_API_KEY,UNIVERSE_ID,PRODUCT_NAME_TEMPLATE,PRODUCT_DESCRIPTION_TEMPLATE&envDefaults=%7B%22PRODUCT_NAME_TEMPLATE%22%3A%22Donate%20%7Breceiving%7D%20Robux%22%2C%22PRODUCT_DESCRIPTION_TEMPLATE%22%3A%22Donated%20%7Breceiving%7D%20Robux%20via%20BloxTip.%22%7D)
 

@@ -2,8 +2,12 @@
   "name": "bloxtip",
   "version": "1.0.0",
   "private": true,
-  "description": "Self-hostable Roblox donation site — Vercel-powered",
-  "dependencies": {
-    "dotenv": "^17.4.2"
+  "description": "Self-hostable Roblox donation site — Cloudflare Pages-powered",
+  "scripts": {
+    "dev": "wrangler pages dev public",
+    "deploy": "wrangler pages deploy public"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
   }
 }

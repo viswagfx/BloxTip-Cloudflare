@@ -1,0 +1,13 @@
+# Cloudflare Pages project for BloxTip.
+# Static site dir is public/, API lives in functions/api/ (Pages Functions).
+
+name = "bloxtip"
+compatibility_date = "2025-08-01"
+pages_build_output_dir = "public"
+
+# Non-secret defaults (optional). Secrets MUST be set in the
+# Cloudflare dashboard (Pages > Settings > Environment variables)
+# or via `wrangler pages secret put`, never committed here.
+# [vars]
+# PRODUCT_NAME_TEMPLATE = "Donate {receiving} Robux"
+# PRODUCT_DESCRIPTION_TEMPLATE = "Donated {receiving} Robux via BloxTip."

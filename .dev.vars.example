@@ -1,0 +1,5 @@
+# Local dev secrets for `wrangler pages dev`. Copy to `.dev.vars` (gitignored).
+ROBLOX_API_KEY=your_api_key_here
+UNIVERSE_ID=your_universe_id_here
+PRODUCT_NAME_TEMPLATE=Donate {receiving} Robux
+PRODUCT_DESCRIPTION_TEMPLATE=Donated {receiving} Robux via BloxTip.
